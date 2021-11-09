@@ -1,7 +1,9 @@
-let endpoint = `https://apipetshop.herokuapp.com/api/articulos`
-
-let init = {
-    method: "GET"
+function detectarCinco(array) {
+    array.forEach(element => {
+        if (element.stock <= 5) {
+            console.log(element.nombre)
+        }
+    });
 }
 
 function filtrarElementos(lista) {
@@ -28,11 +30,18 @@ function renderizarCartas(element) {
           </div>`
 }
 
+
+let endpoint = `https://apipetshop.herokuapp.com/api/articulos`
+
+let init = {
+    method: "GET",
+}
+
 fetch(endpoint, init)
     .then(res => res.json())
     .then(data => {
         const articulos = data.response;
         filtrarElementos(articulos)
+        detectarCinco(articulos)
     })
-
 
