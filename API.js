@@ -1,5 +1,5 @@
 {
-    "response": [{
+    "response" = [{
         "_id": "5f204f86bf2ede0017e48507",
         "nombre": "Pelota interactiva de goma",
         "descripcion": "Puede usar la bola interactiva de elasticidad para jugar con sus mascotas y fortalecer el vínculo, también ayuda a mejorar la inteligencia de las mascotas. El color brillante es fácil de despertar el interés de las mascotas y matar el tiempo aburrido. Juegue con él, el perro reducirá el daño de sus muebles y se sentirá menos solo cuando no esté en casa.",
