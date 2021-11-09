@@ -3,7 +3,14 @@ function filtrarArticulo(array) {
     console.log(medicamentos)
     let juguetes = array.filter(e => e.tipo === "Juguete")
     console.log(juguetes)
+
+    
+
 }
+
+
+
+
 
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`
 
