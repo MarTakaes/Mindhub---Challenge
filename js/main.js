@@ -4,13 +4,21 @@ let init = {
     method: "GET"
 }
 
-function renderizarCartas(lista) {
-    let juguetesBox = document.querySelector(".juguetes_box")
+function filtrarElementos(lista) {
+    let tipo = document.title.includes('Juguetes') ? "Juguete" : "Medicamento"
     lista.forEach(element => {
-        if(element.tipo === 'Juguete'){
-            juguetesBox.innerHTML += `<div class="card" style="width: 18rem;">
+        if(tipo === element.tipo){
+            renderizarCartas(element)
+            console.log('primer if')
+        }
+    });
+}
+
+function renderizarCartas(element) {
+    let articulosBox = document.querySelector(".articulos_box")
+    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded" style="width: 18rem; ">
             <img src="${element.imagen}" class="card-img-top" alt="${element.nombre}">
-            <div class="card-body">
+            <div class="card-body ">
               <h5 class="card-title">${element.nombre}</h5>
               <p class="card-text">${element.descripcion}</p>
               <p class="card-text">Precio: $${element.precio}</p>
@@ -18,16 +26,13 @@ function renderizarCartas(lista) {
               <a href="" class="btn btn-primary">Comprar</a>
             </div>
           </div>`
-        }
-
-    });
 }
 
 fetch(endpoint, init)
     .then(res => res.json())
     .then(data => {
         const articulos = data.response;
-        renderizarCartas(articulos)
+        filtrarElementos(articulos)
     })
 
 
