@@ -1,3 +1,11 @@
+function detectarCinco(array) {
+    array.forEach(element => {
+        if (element.stock <= 5) {
+            console.log(element.nombre)
+        }
+    });
+}
+
 function filtrarArticulo(array) {
     let medicamentos = array.filter(e => e.tipo === "Medicamento")
     console.log(medicamentos)
@@ -23,4 +31,5 @@ fetch(endpoint, init)
     .then(data => {
         const articulos = data.response;
         filtrarArticulo(articulos)
+        detectarCinco(articulos)
     })
