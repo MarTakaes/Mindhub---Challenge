@@ -16,6 +16,5 @@ fetch(endpoint, init)
     .then(res => res.json())
     .then(data => {
         const articulos = data.response;
-        filtrarArticulo(articulos)
         detectarCinco(articulos)
     })
