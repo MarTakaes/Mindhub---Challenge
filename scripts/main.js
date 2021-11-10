@@ -18,12 +18,13 @@ function filtrarElementos(lista) {
 
 function renderizarCartas(element) {
     let articulosBox = document.querySelector(".articulos_box")
-    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded" style="width: 18rem; ">
+    articulosBox.innerHTML += `<div class="container d-flex card m-2 shadow p-3 mb-5 bg-body rounded" style="width: 20rem; ">
             <img src="${element.imagen}" class="card-img-top" alt="${element.nombre}">
             <div class="card-body ">
               <h5 class="card-title">${element.nombre}</h5>
               <p class="card-text">${element.descripcion}</p>
               <p class="card-text">Precio: $${element.precio}</p>
+              <p class="text-danger"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p> 
               <p class="card-text">Stock: ${element.stock}</p>
               <a href="" class="btn btn-primary">Comprar</a>
             </div>
