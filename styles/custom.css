@@ -76,3 +76,11 @@ footer div {
   background-color: var(--grayPet) !important;
 }
 
+.absolute-cart{
+    position: fixed;
+    top: 2.9rem;
+    right: 2rem;
+    z-index: 100;
+}
+
+
