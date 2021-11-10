@@ -1,0 +1,78 @@
+:root {
+  --primaryColor: #fb856d;
+  --secondaryColor: #ed6a5e;
+  --tColor: #f67b683f;
+  --rColor: #ff8e72;
+  --pColor: #ffaf87;
+  --lightColor: #fcece4;
+  --grayPet: #c0c0c0;
+  --gratisColor: #7b443de5;
+}
+
+/* cambiar font family a todo */
+* {
+  /* font-family: 'Times New Roman', Times, serif !important; */
+}
+
+.petshop-p {
+  /* box-shadow: 0 1px 2px 0 rgba(0,0,0,.12);
+    border-radius: 6px; */
+  border-radius: 25px;
+  /* background: var(--lightColor); */
+  border-radius: 0px;
+  box-shadow: 2px 2px 10px #969696, -2px -2px 10px #969696;
+  /* border-radius: 1px;
+background: #e0e0e0;
+box-shadow: inset 5px 5px 10px #5a5a5a,
+            inset -5px -5px 10px #ffffff; */
+}
+body {
+}
+a {
+  color: white !important;
+  font-size: 1.5rem !important;
+  /* padding: 2%; */
+}
+
+.activo {
+  /* color: var(--gratisColor) !important;
+    background-color: white; */
+  border-radius: 5px;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+nav {
+  background-color: var(--gratisColor) !important;
+
+   position: fixed !important;
+   z-index: 12;
+}
+#logo {
+  /* background-color: white; */
+  border-radius: 50px;
+  /* background: #e0e0e0; */
+
+  height: 8rem;
+  width: 8rem;
+}
+
+.icon-shop {
+  height: 3rem;
+  width: 3rem;
+  filter: invert(100%) sepia(13%) saturate(1%) hue-rotate(79deg)
+    brightness(101%) contrast(101%);
+}
+
+.cart-button {
+  border-radius: 2px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: 5px 5px 10px #c5c5c5, -5px -5px 10px #fbfbfb;
+}
+footer div {
+  height: 10vh;
+  background-color: var(--grayPet) !important;
+}
+
