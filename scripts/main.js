@@ -27,7 +27,9 @@ function renderizarCartas(element) {
                 </div>
                 <div class="d-flex flex-column justify-content-end">
                 <p class="card-text luchp">Precio: $${element.precio}</p>
-                <p class="text-danger"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
+                <label id = "cant" for = "cantidad" class ="text-center">Cantidad: 
+                <input type = "text" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
+                <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
                 <a href="#" class="btn btn-primary addToCart" >Añadir al carrito</a>
                 </div>
             </div>
