@@ -34,13 +34,12 @@ function renderizarCartas(element) {
                       <p class="card-text luchp">Precio: $${element.precio}</p>
                       <label id = "cant" for = "cantidad" class ="text-center">Cantidad: 
                       <input type = "number" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
-                      <p class="text-danger text-center"> ${
-                        element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
-                      } </p>
+                      <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
                       <a href="#" class="btnadd btn addToCart" >Añadir al carrito</a>
                       </div>
                   </div>
                   </div>`;
+              
     }
     
 }
@@ -74,6 +73,7 @@ function renderizarCarro(carro) {
         </div>
     </div> `;
   });
+  
 }
 
 
@@ -110,6 +110,8 @@ function agregarAlCarritoClicked(event) {
   const button = event.target;
   console.log("agregarAlCarritoClicked -> button", button);
 }
+
+
 
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
 
@@ -189,3 +191,4 @@ cerrar.addEventListener('click',e=>{
     abrirPopup.style.visibility = "hidden"
     
 })
+
