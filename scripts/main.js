@@ -46,7 +46,7 @@ function renderizarCarro(carro) {
   let carritoBox = document.querySelector(".carrito-box");
   console.log(carritoBox);
   console.log("estoy dentro de renderizar carro");
-  carro.length ==0 ? carritoBox.innerHTML=`<p>no hay nada</p>` : 
+  carro.length ==0 ? carritoBox.innerHTML=`<p>No hay articulos que mostrar</p>` : 
   carritoBox.innerHTML = ``
   carro.forEach(e=>{
     carritoBox.innerHTML += `
