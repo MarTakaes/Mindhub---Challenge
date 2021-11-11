@@ -217,6 +217,8 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+
+
 }
 @media (max-width: 1200px) {
   .mapa {
@@ -229,6 +231,13 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
 
 
 }
+
+/* @media (min-width: 300px){
+  .mapa{
+    width: 200px;
+    height: 200px;
+  } 
+}*/
 #cant {
   color: var(--footerColor);
   font-size: large;
@@ -239,10 +248,10 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
   margin-left: 1rem;
   height: 1.5rem;
 }
-.iframe {
+/* .iframe {
   display: flex;
   flex-shrink: 1;
-}
+} */
 .p {
   margin-top: 1rem;
   color: var(--gratisColor);
@@ -261,9 +270,15 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
   visibility: hidden;
 }
 
-.popup .btnCerrarPopup {
-  display: block;
-  text-align: right;
+#btnCerrarPopup { 
+  /* border: 1px solid black; */
+text-decoration: none;
+  align-self: center;  
+  color: black !important;
+} 
+
+#btnCerrarPopup:hover{
+  text-decoration: underline;
 }
 
 .activo {
