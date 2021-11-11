@@ -3,7 +3,7 @@
   --secondaryColor: #ed6a5e;
   --tColor: #f67b683f;
   --rColor: #ff8e72;
-  --pColor: #ffaf87;
+  --pColor: #ffaf8765;
   --lightColor: #fcece4;
   --grayPet: #c0c0c0;
   --gratisColor: #7b443de5;
@@ -14,6 +14,12 @@
 * {
 
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important; 
+}
+.btnadd{
+ background-color: #7b443d88;
+text-decoration: none;
+border-radius: .2rem;
+padding-left: .2rem;
 }
 
 /*.petshop-p {
@@ -38,7 +44,7 @@ a {
   /* padding: 2%; */
 }
 
-.activo {
+a [href] {
   /* color: var(--gratisColor) !important;
     background-color: white; */
   border-radius: 5px;
@@ -59,6 +65,7 @@ nav {
 #logo {
   /* background-color: white; */
   border-radius: 50px;
+  margin-left: 8rem;
   /* background: #e0e0e0; */
 
   height: 8rem;
@@ -88,10 +95,10 @@ footer p, a{
 }
 
 .icon-shop{
- width: 3rem;
- height: 3rem;
+ width: 2.2rem;
+ height: 2.2rem;
  margin: 1rem;
-
+margin-top: 1.2rem;
 }
 
 /* cambia color de hamburguesa de negro a blanco */
@@ -119,6 +126,7 @@ h1{
     animation-name: shake;
     animation-duration: 13s;
     animation-iteration-count: infinite;
+    color: var(--gratisColor);
 }
 
 .shad-hover:hover{
@@ -216,7 +224,18 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
  height: 1.5rem;
  
 }
-.btn-abrir-popup{
+.iframe{
+display: flex;
+flex-shrink: 1;
+}
+.p{
+  margin-top: 1rem;
+  color: var(--gratisColor);
+}
+.form{
+  color: var(--gratisColor);
+}
+.btnAbrirPopup{
   border-radius: .5;
   border: solid;
   border-color:  var(--gratisColor);
@@ -229,7 +248,7 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
 #popUp.active{
   visibility: visible;
 }
-.popup .btn-cerrar-popup{
+.popup .btnCerrarPopup{
   display: block;
   text-align: right;
 }
