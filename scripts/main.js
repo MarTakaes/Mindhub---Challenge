@@ -36,7 +36,7 @@ function renderizarCartas(element) {
                 <p class="text-danger text-center"> ${
                   element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
                 } </p>
-                <a class="btnadd" href="#" class="btn btn- addToCart" >Añadir al carrito</a>
+                <a href="#" class="btnadd btn addToCart" >Añadir al carrito</a>
                 </div>
             </div>
             </div>`;
@@ -46,28 +46,60 @@ function renderizarCarro(carro) {
   let carritoBox = document.querySelector(".carrito-box");
   console.log(carritoBox);
   console.log("estoy dentro de renderizar carro");
-  carro.length ==0 ? carritoBox.innerHTML=`<p>No hay articulos que mostrar</p>` : 
-  carritoBox.innerHTML = ``
-  carro.forEach(e=>{
+  carro.length == 0
+    ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`)
+    : 
+    carritoBox.innerHTML = ``
+  carro.forEach((e) => {
     carritoBox.innerHTML += `
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
             <img src="${e.imagen}" class="img-fluid rounded-start" alt="${e.nombre}">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-7">
             <div class="card-body">
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            
               <h5 class="card-title">${e.nombre}</h5>
               <p class="card-text">$${e.precio}</p>
               <p class="card-text"><small class="text-muted">cantidad seleccionada</small></p>
             </div>
           </div>
+          <div class="col-1 d-flex justify-content-end pt-2 pe-3" >
+            <span type="button" style="width:2px; height:2px" class="btn-close delete-element"></span>
+          </div>
         </div>
-      </div> `;
-  })
-
+    </div> `;
+  });
 }
+
+
+function deleteFromList(lista, name) {
+    console.log('dentro de la funcion deleteFromList')
+    let index;
+    lista.forEach(e=>{
+        if(e.nombre=== name){        
+            console.log('el elemento a borrar es' + name)
+            index=lista.indexOf(e)
+            console.log('el index es' + index)
+        }
+    })
+    console.log('se elimina el objeto con nombre' + name + 'e index ' + index + 'de la lista ' + lista)
+    lista.splice(index,1)
+ 
+}
+
+// genera una nueva lista, y la idea es eliminar de la lista ya existente
+function deleteFromListConFilter(lista,nombre){
+
+    let nuevaLista = lista.filter( e=>{
+
+        return e.nombre!= nombre
+    })
+    return nuevaLista
+   
+}
+
 
 let carro = [];
 
@@ -104,7 +136,7 @@ fetch(endpoint, init)
         });
 
         carro.push(selectedElement[0]);
-        console.log(carro[0].precio)
+        console.log(carro[0].precio);
 
         // tomar los objetos del shopping cart, y renderizarlos en el offcanvas
       });
@@ -113,7 +145,29 @@ fetch(endpoint, init)
     console.log(cartButton);
     cartButton.addEventListener("click", (e) => {
       console.log("dentro del click del carro");
+      console.log(carro)
       renderizarCarro(carro);
+      var buttonCloseList = document.querySelectorAll(".delete-element");
+      buttonCloseList.forEach((e) => {
+        e.addEventListener("click", (a) => {
+          let elementoABorrar =
+            e.closest(".row").children[1].children[0].firstElementChild
+              .innerHTML;
+              console.log(elementoABorrar)
+              console.log('antes de eliminar')
+              console.log(carro)
+          deleteFromList(carro, elementoABorrar);
+          renderizarCarro(carro)
+         
+
+
+
+        console.log('carro')
+          console.log(carro);
+        });
+      });
+
+      console.log(buttonCloseList);
     });
   });
 
