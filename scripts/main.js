@@ -67,23 +67,7 @@ fetch(endpoint, init)
                 let selectedElement = articulos.filter(articulo=>{
                     return articulo.nombre == elementName
                 })
-      
-
-            
-
-                
                 carro.push(selectedElement[0])
-
-                // console.log(selectedElement[0])
-
-                // carro.push(selectedElement[0])
-
-                // let transform = Array.from(carro)
-
-                console.log(carro)
-
-
-               
 
             })
         })
