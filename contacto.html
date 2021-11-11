@@ -90,24 +90,19 @@
 
                     <label for="no">No</label>
                     <input type="radio" name="vacuna" value="no" id="no">
-                  
-                </div>
-                <div class="mt-3">
-                     <textarea class="col-12" placeholder="Mensaje" id="mensaje"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary  ">Enviar</button>
-                <div class="alert alert-success mt-2" role="alert">
-                  <h4 class="alert-heading">Tus datos han sido enviados! 🐕 </h4>
-                  <p>¡Gracias por escribirnos!</p>
-                               
-                </div>
+                    <textarea class="col-12" placeholder="Mensaje" id="mensaje"></textarea>
+                    <button type="button" id="btn-abrir-popup" class="btn-abrir-popup">Enviar</button> 
+              </div>
+                <div class="popup" id="popUp">
+                    <div  class=" alert alert-success" role="alert">
+                      <a href="#" class="btn-cerrar-popup" class ="bbtn-cerrar-popup">☒</a>
+                       <h4 class="alert-heading">Tus datos han sido enviados! 🐕 </h4>
+                       <p>¡Gracias por escribirnos!</p>
+                    </div>         
+                </div> 
               </form>
           </div>
         </section>
-       
-
-       
-
     </main>
     <footer>
 

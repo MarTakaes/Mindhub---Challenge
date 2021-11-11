@@ -213,3 +213,20 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
  height: 1.5rem;
  
 }
+.btn-abrir-popup{
+  border-radius: .5;
+  border: solid;
+  border-color:  var(--gratisColor);
+  cursor: pointer;
+  transition: .3s ease all;
+}
+#popUp{
+  visibility: hidden;
+}
+#popUp.active{
+  visibility: visible;
+}
+.popup .btn-cerrar-popup{
+  display: block;
+  text-align: right;
+}

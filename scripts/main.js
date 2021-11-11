@@ -70,8 +70,15 @@ fetch(endpoint, init)
                     return articulo.nombre == elementName
                 })
                 carro.push(selectedElement[0])
-
+                
             })
         })
 
     })
+
+ let abrirPopup = document.getElementById("openPopup")
+    popUp = document.getElementById("btn-abrir-popup")
+    cerrar = document.getElementById("btn-cerrar-popup");
+
+ abrirPopup.addEventListener('click')
+ });
