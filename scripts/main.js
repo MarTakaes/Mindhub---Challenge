@@ -66,19 +66,9 @@ fetch(endpoint, init)
                 
                 let selectedElement = articulos.filter(articulo=>{
                     return articulo.nombre == elementName
-<<<<<<< HEAD
                 })
                 carro.push(selectedElement[0])
 
-=======
-                })              
-                carro.push(selectedElement[0])
-
-
-
-               
-
->>>>>>> 63f05476dcd4014449b030ab05931d85f8046d7b
             })
         })
 
