@@ -32,11 +32,11 @@ function renderizarCartas(element) {
                 <div class="d-flex flex-column justify-content-end">
                 <p class="card-text luchp">Precio: $${element.precio}</p>
                 <label id = "cant" for = "cantidad" class ="text-center">Cantidad: 
-                <input type = "text" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
+                <input type = "number" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
                 <p class="text-danger text-center"> ${
                   element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
                 } </p>
-                <a href="#" class="btn btn-primary addToCart" >Añadir al carrito</a>
+                <a class="btnadd" href="#" class="btn btn- addToCart" >Añadir al carrito</a>
                 </div>
             </div>
             </div>`;
@@ -66,9 +66,7 @@ function renderizarCarro(carro) {
         </div>
       </div> `;
   })
-  
-  
-  
+
 }
 
 let carro = [];
@@ -120,9 +118,9 @@ fetch(endpoint, init)
   });
 
 // let abrirPopup = document.getElementById("openPopup");
-// let popUp = document.getElementById("btn-abrir-popup");
-// let cerrar = document.getElementById("btn-cerrar-popup");
+//    popUp = document.getElementById("btnAbrirPopup");
+//    cerrar = document.getElementById("btnCerrarPopup");
 
 // abrirPopup.addEventListener("click", (e) => {
-
+//    popUp.classList.add('active')
 // });
