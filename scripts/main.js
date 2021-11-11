@@ -175,10 +175,17 @@ fetch(endpoint, init)
     });
   });
 
-// let abrirPopup = document.getElementById("openPopup");
-//    popUp = document.getElementById("btnAbrirPopup");
-//    cerrar = document.getElementById("btnCerrarPopup");
+let abrirPopup = document.getElementById("popup");
 
-// abrirPopup.addEventListener("click", (e) => {
-//    popUp.classList.add('active')
-// });
+let popUp = document.getElementById("btnAbrirPopup");
+let cerrar = document.getElementById("btnCerrarPopup");
+
+popUp.addEventListener("click",e=>{
+    console.log('clikea')
+    abrirPopup.style.visibility = "visible"
+})
+
+cerrar.addEventListener('click',e=>{
+    abrirPopup.style.visibility = "hidden"
+    
+})
