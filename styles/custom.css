@@ -13,7 +13,7 @@
 /* cambiar font family a todo */
 * {
 
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important; 
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important; 
 }
 
 .petshop-p {
@@ -96,7 +96,7 @@ footer p, a{
 
 .absolute-cart{
     position: fixed;
-    top: 2.9rem;
+    top: 2rem;
     right: 2rem;
     z-index: 100;
 }
@@ -104,4 +104,11 @@ footer p, a{
 
 .icon-shop:hover{
   filter: contrast(100%);
+}
+
+@media (max-width: 1400px){
+  .mapa{flex-direction:column;
+  justify-content: center;}
+
+  
 }
