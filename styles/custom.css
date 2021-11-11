@@ -247,3 +247,7 @@ flex-shrink: 1;
   display: block;
   text-align: right;
 }
+
+.activo{
+    text-decoration: underline;
+}

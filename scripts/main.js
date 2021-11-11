@@ -17,29 +17,32 @@ function filtrarElementos(lista) {
 }
 
 function renderizarCartas(element) {
-  let articulosBox = document.querySelector(".articulos_box");
-  articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
-            <img src="${
-              element.imagen
-            }" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${
-    element.nombre
-  }">
-            <div class="card-body d-flex flex-column justify-content-between get-title">
-                <div class="d-flex flex-column justify-content-evenly">
-                <h5 class="card-title">${element.nombre}</h5>
-                <p class="card-text">${element.descripcion}</p>
-                </div>
-                <div class="d-flex flex-column justify-content-end">
-                <p class="card-text luchp">Precio: $${element.precio}</p>
-                <label id = "cant" for = "cantidad" class ="text-center">Cantidad: 
-                <input type = "number" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
-                <p class="text-danger text-center"> ${
-                  element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
-                } </p>
-                <a href="#" class="btnadd btn addToCart" >Añadir al carrito</a>
-                </div>
-            </div>
-            </div>`;
+    if( document.title == "Pet-Shop Franco | Farmacia" || document.title == "Pet-Shop Franco | Juguetes"){
+        let articulosBox = document.querySelector(".articulos_box");
+        articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
+                  <img src="${
+                    element.imagen
+                  }" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${
+          element.nombre
+        }">
+                  <div class="card-body d-flex flex-column justify-content-between get-title">
+                      <div class="d-flex flex-column justify-content-evenly">
+                      <h5 class="card-title">${element.nombre}</h5>
+                      <p class="card-text">${element.descripcion}</p>
+                      </div>
+                      <div class="d-flex flex-column justify-content-end">
+                      <p class="card-text luchp">Precio: $${element.precio}</p>
+                      <label id = "cant" for = "cantidad" class ="text-center">Cantidad: 
+                      <input type = "number" id = "contador" name = "cantidad" value = "1" class="text-center"></label>
+                      <p class="text-danger text-center"> ${
+                        element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
+                      } </p>
+                      <a href="#" class="btnadd btn addToCart" >Añadir al carrito</a>
+                      </div>
+                  </div>
+                  </div>`;
+    }
+    
 }
 
 function renderizarCarro(carro) {
@@ -120,6 +123,7 @@ fetch(endpoint, init)
   .then((res) => res.json())
   .then((data) => {
     const articulos = data.response;
+
     filtrarElementos(articulos);
     detectarCinco(articulos);
     const agregarAlCarrito = document.querySelectorAll(".addToCart");
