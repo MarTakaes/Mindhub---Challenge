@@ -57,7 +57,7 @@ fetch(endpoint, init)
         filtrarElementos(articulos)
         detectarCinco(articulos)
         const agregarAlCarrito = document.querySelectorAll('.addToCart')
-        let title= document.querySelectorAll('.card-title')
+        let title = document.querySelectorAll('.card-title')
         agregarAlCarrito.forEach((addToCartButton) => {
 
             addToCartButton.addEventListener("click", a=>{
@@ -66,21 +66,9 @@ fetch(endpoint, init)
                 
                 let selectedElement = articulos.filter(articulo=>{
                     return articulo.nombre == elementName
-                })
-      
-
-            
-
-                
+                })              
                 carro.push(selectedElement[0])
 
-                // console.log(selectedElement[0])
-
-                // carro.push(selectedElement[0])
-
-                // let transform = Array.from(carro)
-
-                console.log(carro)
 
 
                
