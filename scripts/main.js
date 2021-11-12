@@ -3,7 +3,6 @@ function filtrarElementos(lista) {
   lista.forEach((element) => {
     if (tipo === element.tipo) {
       renderizarCartas(element);
-      console.log("primer if");
     }
   });
 }
@@ -21,14 +20,12 @@ function renderizarCartas(element) {
                       <h5 class="card-title">${element.nombre}</h5>
                       <p><a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">Descripcion</a></p><div class="collapse" id="collapseExample">
                       <div >${element.descripcion}</div>
-                    </div>
-                      
+                    </div>               
                       </div>
                       <div class="d-flex flex-column justify-content-end">
                       <p class="card-text luchp">Precio: $${element.precio}</p>
                       <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
-                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
-                      
+                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>                      
                       <a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a>
                       </div>
                   </div>
@@ -36,9 +33,13 @@ function renderizarCartas(element) {
   }
 }
 
-function renderizarCarro(carro) {
+function renderizarCarro() {
   let carritoBox = document.querySelector(".carrito-box");
-  carro.length == 0 ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`) : (carritoBox.innerHTML = ``);
+  let keys = Object.keys(localStorage)
+  let carro =[]
+  keys.forEach(key=>carro.push(JSON.parse(localStorage.getItem(key))[0]))
+  carro.length == 0 ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`) : 
+  carritoBox.innerHTML = ``;
   carro.forEach((e) => {
     carritoBox.innerHTML += `
     <div class="card mb-3" style="max-width: 540px;">
@@ -49,32 +50,66 @@ function renderizarCarro(carro) {
           <div class="col-md-7">
             <div class="card-body">
               <h5 class="card-title">${e.nombre}</h5>
-              <p class="card-text">$${e.precio}</p>
-              <p>${document.getElementById(e._id).value} Unidades</p>
+              <p class="card-text">$${e.precio}</p>                   
             </div>
           </div>
           <div class="col-1 d-flex justify-content-end pt-2 pe-3" >
-            <span type="button" style="width:2px; height:2px" class="btn-close delete-element"></span>
+            <span type="button" style="width:2px; height:2px" class="btn-close delete-element"></span>       
           </div>
         </div>
-    </div> `;
+    </div> 
+    `;
   });
 }
 
-// Borrar del carrito
-function deleteFromList(lista, name, evento) {
-  let index;
-  lista.forEach((e) => {
-    if (e.nombre === name) {
-      index = lista.indexOf(e);
-    }
-  });
-  lista.splice(index, 1);
-  evento.target.parentElement.parentElement.parentElement.remove();
+function checkoutButtons(){
+    let irCheckout = document.querySelector(".ir-checkout")
+    let vaciarCarrito = document.querySelector(".vaciar-carrito")
+    vaciarCarrito.addEventListener("click", e=>{
+        localStorage.clear()
+    })
 }
 
-let carro = [];
+function saveLocal(array){
+    localStorage.setItem('carro', JSON.stringify(array))
+}
+function script(data){
+    const articulos = data.response;
+    filtrarElementos(articulos);
+    const agregarAlCarrito = document.querySelectorAll(".addToCart");
+    agregarAlCarrito.forEach((addToCartButton) => {
+      addToCartButton.addEventListener("click", (a) => {
+        let elementName = addToCartButton.closest(".get-title").children[0].firstElementChild.innerHTML;
+
+        let selectedElement = articulos.filter(articulo => articulo.nombre == elementName);
+        localStorage.setItem(elementName,JSON.stringify(selectedElement))
+        keys = Object.keys(localStorage)
+        badgeSpan.innerHTML = keys.length
+      });
+    });  
+    cartButton.addEventListener("click", (e) => {
+      renderizarCarro();
+      var buttonCloseList = document.querySelectorAll(".delete-element");
+      buttonCloseList.forEach((span) => {
+        span.addEventListener("click", (evento) => {
+          let elementoABorrar =
+            span.closest(".row").children[1].children[0].firstElementChild
+            .innerHTML;
+            evento.target.parentElement.parentElement.parentElement.remove();
+            localStorage.removeItem(elementoABorrar);
+          keys = Object.keys(localStorage)
+        badgeSpan.innerHTML = keys.length
+        });
+      });
+    });
+  }
+
+checkoutButtons()
+
 let badgeSpan = document.querySelector('.badge')
+let cartButton = document.querySelector(".shopping-cart");
+let keys = Object.keys(localStorage)
+badgeSpan.innerHTML = keys.length
 
 // Fetch
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
@@ -82,35 +117,8 @@ let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
 let init = {
   method: "GET",
 };
-let cartButton = document.querySelector(".shopping-cart");
-console.log(cartButton);
 
-fetch(endpoint, init)
-  .then((res) => res.json())
-  .then((data) => {
-    const articulos = data.response;
-    filtrarElementos(articulos);
-    const agregarAlCarrito = document.querySelectorAll(".addToCart");
-    agregarAlCarrito.forEach((addToCartButton) => {
-      addToCartButton.addEventListener("click", (a) => {
-        let elementName = addToCartButton.closest(".get-title").children[0].firstElementChild.innerHTML;
-        let selectedElement = articulos.filter(articulo => articulo.nombre == elementName);
-        carro.push(selectedElement[0]);
-        badgeSpan.innerHTML = carro.length
-      });
-    });
-
-    cartButton.addEventListener("click", (e) => {
-      renderizarCarro(carro);
-      var buttonCloseList = document.querySelectorAll(".delete-element");
-      buttonCloseList.forEach((span) => {
-        span.addEventListener("click", (evento) => {
-          let elementoABorrar =
-            span.closest(".row").children[1].children[0].firstElementChild
-            .innerHTML;
-          deleteFromList(carro, elementoABorrar, evento);
-          badgeSpan.innerHTML = carro.length
-        });
-      });
-    });
-  });
+  fetch(endpoint, init)
+  .then(res => res.json())
+  .then(data => script(data))
+  .catch(err=>console.log(err.message))
