@@ -81,8 +81,8 @@ nav {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(79deg) brightness(101%) contrast(101%);
 }
 
-/*Boton Agregar al carrito*/
-#btnadd{
+/*Botones*/
+#btnadd {
   background-color: #7b443d88;
   text-decoration: none;
   color: white;
@@ -91,11 +91,27 @@ nav {
   padding: 0.5rem;
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   width: 100%;
-
 }
-#btnAbrirPopup{
+
+#btnadd:hover {
+  background-color: #94524988;
+}
+
+#btnVaciar {
+  background-color: #ffca38c2;
+  padding-top: 0.5;
+  padding-bottom: 0.5;
+  border-radius: 0.2rem;
+  color: rgb(99, 45, 37);
+}
+
+#btnVaciar:hover {
+  background-color: #fad36ac2;
+}
+
+#btnAbrirPopup {
   background-color: #7b443d88;
   text-decoration: none;
   color: white;
@@ -105,21 +121,12 @@ nav {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-  
-
 }
 
-.btn{
+.btn {
   padding: 0;
 }
-/* 
-#btnAbrirPopup {
-  border-radius: 0.5;
-  border: solid;
-  border-color: var(--gratisColor);
-  cursor: pointer;
-  transition: 0.3s ease all;
-} */
+
 
 /*Pagina Home*/
 .home-tiny-pic {
@@ -135,6 +142,11 @@ h1 {
   animation-duration: 13s;
   animation-iteration-count: infinite;
   color: var(--gratisColor);
+}
+
+.titulo-carrito {
+  color: var(--gratisColor);
+  font-size: 1.5rem;
 }
 
 .shad-hover:hover {
@@ -288,14 +300,13 @@ h1 {
   visibility: hidden;
 }
 
-#btnCerrarPopup { 
-  /* border: 1px solid black; */
-text-decoration: none;
-  align-self: center;  
-  color: black !important;
-} 
+#btnCerrarPopup {
+  text-decoration: none;
+  align-self: center;
+  color: rgb(8, 85, 31) !important;
+}
 
-#btnCerrarPopup:hover{
+#btnCerrarPopup:hover {
   text-decoration: underline;
 }
 
@@ -310,14 +321,12 @@ footer {
   color: white;
 }
 
-#div{
-  font-size: 1.3rem; 
+#div {
+  font-size: 1.3rem;
   min-height: 3rem;
 }
 
-.compra-popup{
-    box-shadow: 3px 3px black;
-    visibility: hidden;
+.compra-popup {
+  box-shadow: 3px 3px black;
+  visibility: hidden;
 }
-
-

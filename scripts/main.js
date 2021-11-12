@@ -13,26 +13,31 @@ function renderizarCartas(element) {
     document.title == "Pet-Shop Franco | Juguetes"
   ) {
     let articulosBox = document.querySelector(".articulos_box");
-    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
-    <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
-    <div class="card-body d-flex flex-column justify-content-between get-title">
-      <div class="d-flex flex-column justify-content-evenly">
-        <h5 class="card-title">${element.nombre}</h5>
-        <p>
-          <a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#m${element._id}"  aria-expanded="false" aria-controls="m${element._id}">Descripcion</a>
-        </p>
-        <div class="collapse" id="m${element._id}">
-          <div >${element.descripcion}</div>
-        </div>
-      </div>
-      <div class="d-flex flex-column justify-content-end">
-        <p class="card-text luchp">Precio: $${element.precio}</p>
-        <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
-        <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
-        <a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a>
-      </div>
-    </div>
-  </div>`;
+    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 abuelo">
+                  <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
+                  <div class="card-body d-flex flex-column justify-content-between get-title">
+                    <div class="d-flex flex-column justify-content-evenly">
+                      <h5 class="card-title">${element.nombre}</h5>
+                      <p>
+                        <a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#m${element._id}"  aria-expanded="false" aria-controls="m${element._id}">Descripcion</a>
+                      </p>
+                      <div class="collapse" id="m${element._id}">
+                        <div >${element.descripcion}</div>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-end">
+                      <p class="card-text luchp">Precio: $${element.precio}</p>
+                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
+                      <p class="text-danger text-center mt-4"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
+                    </div>
+                    <div>
+                    <a href="#f${element._id}" id="btnadd" class="addToCart " data-bs-toggle="collapse" aria-expanded="false" aria-controls="f${element._id}">Añadir al carrito</a>
+                    </div>
+                    </div>
+                    <div class="collapse addto-popup" id="f${element._id}">
+                        <div >Agregado al carrito</div>
+                      </div>
+                    </div>`;
   }
 }
 
@@ -41,9 +46,9 @@ function renderizarCarro() {
   let keys = Object.keys(localStorage);
   let carro = [];
   keys.forEach((key) => carro.push(JSON.parse(localStorage.getItem(key))[0]));
-  carro.length == 0
-    ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`)
-    : (carritoBox.innerHTML = ``);
+  carro.length == 0 ?
+    (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`) :
+    (carritoBox.innerHTML = ``);
   carro.forEach((e) => {
     carritoBox.innerHTML += `
     <div class="card mb-3" style="max-width: 540px;">
@@ -103,7 +108,6 @@ function abrirAlertaPopup(boton, activar, close) {
       console.log("clikea");
       activar.style.visibility = "visible";
     });
-
     close.addEventListener("click", (e) => {
       abrirPopup.style.visibility = "hidden";
     });
@@ -119,7 +123,26 @@ function script(data) {
       let elementName =
         addToCartButton.closest(".get-title").children[0].firstElementChild
           .innerHTML;
-          alert('Item agregado al carrito')
+        //   let buttonAdd = document.getElementById(addToCartButton._id)
+        //   console.log(`f${a.target.descripcion}`)
+
+          alert("Agregado al carrito")
+        // setTimeout(function() {
+        //     addToCartButton.closest(".abuelo").children[2].remove()
+        //  }, 1000);
+        
+        
+
+        // let cartPopup= document.querySelectorAll('.addto-popup')
+        
+        
+        
+    
+        
+        
+
+
+
 
       let selectedElement = articulos.filter(
         (articulo) => articulo.nombre == elementName
@@ -136,7 +159,7 @@ function script(data) {
       span.addEventListener("click", (evento) => {
         let elementoABorrar =
           span.closest(".row").children[1].children[0].firstElementChild
-            .innerHTML;
+          .innerHTML;
         evento.target.parentElement.parentElement.parentElement.remove();
         localStorage.removeItem(elementoABorrar);
         keys = Object.keys(localStorage);
