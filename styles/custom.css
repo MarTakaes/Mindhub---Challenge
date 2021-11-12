@@ -254,10 +254,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
-
-
 }
 
 #cant {
@@ -317,4 +314,10 @@ footer {
   font-size: 1.3rem; 
   min-height: 3rem;
 }
+
+.compra-popup{
+    box-shadow: 3px 3px black;
+    visibility: hidden;
+}
+
 

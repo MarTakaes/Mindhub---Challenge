@@ -13,26 +13,26 @@ function renderizarCartas(element) {
     document.title == "Pet-Shop Franco | Juguetes"
   ) {
     let articulosBox = document.querySelector(".articulos_box");
-    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xxl-3">
-                  <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
-                  <div class="card-body d-flex flex-column justify-content-between align-items-start get-title">
-                      <div  class="d-flex flex-column justify-content-evenly">
-                         <h5 id="div" class="card-title">${element.nombre}</h5>
-                         <p><a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">Descripción</a></p><div class="collapse" id="collapseExample">
-                        <div>${element.descripcion}</div>
-                     </div>
-                      
-                  </div>
-                  <div class="d-flex flex-column justify-content-end">
-                      <p class="card-text">Precio: $${element.precio}</p>
-                      <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
-                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
-                      
-                      
-                  </div>
-                  <div class="d-flex justify-content-center w-100"><a href="#/" id="btnadd" class="addToCart">Añadir al carrito</a></div>
-                  </div>
-                  </div>`;
+    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
+    <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
+    <div class="card-body d-flex flex-column justify-content-between get-title">
+      <div class="d-flex flex-column justify-content-evenly">
+        <h5 class="card-title">${element.nombre}</h5>
+        <p>
+          <a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#m${element._id}"  aria-expanded="false" aria-controls="m${element._id}">Descripcion</a>
+        </p>
+        <div class="collapse" id="m${element._id}">
+          <div >${element.descripcion}</div>
+        </div>
+      </div>
+      <div class="d-flex flex-column justify-content-end">
+        <p class="card-text luchp">Precio: $${element.precio}</p>
+        <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
+        <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
+        <a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a>
+      </div>
+    </div>
+  </div>`;
   }
 }
 
@@ -66,14 +66,21 @@ function renderizarCarro() {
   });
 }
 
+
 function checkoutButtons() {
   let irCheckout = document.querySelector(".ir-checkout");
+  irCheckout.addEventListener('click',e=>{
+      e.target.style.visibility = "visible"
+      console.log('clikea')
+  })
   let vaciarCarrito = document.querySelector(".vaciar-carrito");
   vaciarCarrito.addEventListener("click", (e) => {
     localStorage.clear();
+    let carritoBox = document.querySelector(".carrito-box"); 
+    carritoBox.innerHTML = ``
+    badgeSpan.innerHTML = 0
   });
 }
-
 
 function abrirAlertaPopup(boton, activar, close) {
   if (document.title == "Pet-Shop Franco | Contacto") {
@@ -88,9 +95,6 @@ function abrirAlertaPopup(boton, activar, close) {
   }
 }
 
-function saveLocal(array) {
-  localStorage.setItem("carro", JSON.stringify(array));
-}
 function script(data) {
   const articulos = data.response;
   filtrarElementos(articulos);
@@ -126,20 +130,22 @@ function script(data) {
   });
 }
 
-checkoutButtons();
 
-let badgeSpan = document.querySelector(".badge");
-let cartButton = document.querySelector(".shopping-cart");
-let keys = Object.keys(localStorage);
-badgeSpan.innerHTML = keys.length;
-let abrirPopup = document.getElementById("popup");
-let popUp = document.getElementById("btnAbrirPopup");
-let cerrar = document.getElementById("btnCerrarPopup");
+    checkoutButtons();
+    let badgeSpan = document.querySelector(".badge");
+    let cartButton = document.querySelector(".shopping-cart");
+    let keys = Object.keys(localStorage);
+    badgeSpan.innerHTML = keys.length;
+    let abrirPopup = document.getElementById("popup");
+    let popUp = document.getElementById("btnAbrirPopup");
+    let cerrar = document.getElementById("btnCerrarPopup");
+    abrirAlertaPopup(popUp, abrirPopup, cerrar);
 
-abrirAlertaPopup(popUp, abrirPopup, cerrar);
-// Fetch
+
+
+
+
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
-
 let init = {
   method: "GET",
 };
