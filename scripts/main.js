@@ -14,7 +14,11 @@ function renderizarCartas(element) {
   ) {
     let articulosBox = document.querySelector(".articulos_box");
     articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
-                  <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
+                  <img src="${
+                    element.imagen
+                  }" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${
+      element.nombre
+    }">
                   <div class="card-body d-flex flex-column justify-content-between get-title">
                       <div class="d-flex flex-column justify-content-evenly">
                       <h5 class="card-title">${element.nombre}</h5>
@@ -24,8 +28,14 @@ function renderizarCartas(element) {
                       </div>
                       <div class="d-flex flex-column justify-content-end">
                       <p class="card-text luchp">Precio: $${element.precio}</p>
-                      <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
-                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>                      
+                      <p class="text-danger text-center"> ${
+                        element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
+                      } </p>
+                      <label for="${
+                        element._id
+                      }"> Cantidad <input type = "number" id = "${
+      element._id
+    }" value="1" class="text-center contador"></label>                      
                       <a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a>
                       </div>
                   </div>
@@ -35,11 +45,12 @@ function renderizarCartas(element) {
 
 function renderizarCarro() {
   let carritoBox = document.querySelector(".carrito-box");
-  let keys = Object.keys(localStorage)
-  let carro =[]
-  keys.forEach(key=>carro.push(JSON.parse(localStorage.getItem(key))[0]))
-  carro.length == 0 ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`) : 
-  carritoBox.innerHTML = ``;
+  let keys = Object.keys(localStorage);
+  let carro = [];
+  keys.forEach((key) => carro.push(JSON.parse(localStorage.getItem(key))[0]));
+  carro.length == 0
+    ? (carritoBox.innerHTML = `<p>No hay artículos que mostrar</p>`)
+    : (carritoBox.innerHTML = ``);
   carro.forEach((e) => {
     carritoBox.innerHTML += `
     <div class="card mb-3" style="max-width: 540px;">
@@ -62,55 +73,77 @@ function renderizarCarro() {
   });
 }
 
-function checkoutButtons(){
-    let irCheckout = document.querySelector(".ir-checkout")
-    let vaciarCarrito = document.querySelector(".vaciar-carrito")
-    vaciarCarrito.addEventListener("click", e=>{
-        localStorage.clear()
-    })
+function checkoutButtons() {
+  let irCheckout = document.querySelector(".ir-checkout");
+  let vaciarCarrito = document.querySelector(".vaciar-carrito");
+  vaciarCarrito.addEventListener("click", (e) => {
+    localStorage.clear();
+  });
 }
 
-function saveLocal(array){
-    localStorage.setItem('carro', JSON.stringify(array))
-}
-function script(data){
-    const articulos = data.response;
-    filtrarElementos(articulos);
-    const agregarAlCarrito = document.querySelectorAll(".addToCart");
-    agregarAlCarrito.forEach((addToCartButton) => {
-      addToCartButton.addEventListener("click", (a) => {
-        let elementName = addToCartButton.closest(".get-title").children[0].firstElementChild.innerHTML;
 
-        let selectedElement = articulos.filter(articulo => articulo.nombre == elementName);
-        localStorage.setItem(elementName,JSON.stringify(selectedElement))
-        keys = Object.keys(localStorage)
-        badgeSpan.innerHTML = keys.length
-      });
-    });  
-    cartButton.addEventListener("click", (e) => {
-      renderizarCarro();
-      var buttonCloseList = document.querySelectorAll(".delete-element");
-      buttonCloseList.forEach((span) => {
-        span.addEventListener("click", (evento) => {
-          let elementoABorrar =
-            span.closest(".row").children[1].children[0].firstElementChild
-            .innerHTML;
-            evento.target.parentElement.parentElement.parentElement.remove();
-            localStorage.removeItem(elementoABorrar);
-          keys = Object.keys(localStorage)
-        badgeSpan.innerHTML = keys.length
-        });
-      });
+function abrirAlertaPopup(boton, activar, close) {
+  if (document.title == "Pet-Shop Franco | Contacto") {
+    boton.addEventListener("click", (e) => {
+      console.log("clikea");
+      activar.style.visibility = "visible";
+    });
+
+    close.addEventListener("click", (e) => {
+      abrirPopup.style.visibility = "hidden";
     });
   }
+}
 
-checkoutButtons()
+function saveLocal(array) {
+  localStorage.setItem("carro", JSON.stringify(array));
+}
+function script(data) {
+  const articulos = data.response;
+  filtrarElementos(articulos);
+  const agregarAlCarrito = document.querySelectorAll(".addToCart");
+  agregarAlCarrito.forEach((addToCartButton) => {
+    addToCartButton.addEventListener("click", (a) => {
+      let elementName =
+        addToCartButton.closest(".get-title").children[0].firstElementChild
+          .innerHTML;
 
-let badgeSpan = document.querySelector('.badge')
+      let selectedElement = articulos.filter(
+        (articulo) => articulo.nombre == elementName
+      );
+      localStorage.setItem(elementName, JSON.stringify(selectedElement));
+      keys = Object.keys(localStorage);
+      badgeSpan.innerHTML = keys.length;
+    });
+  });
+  cartButton.addEventListener("click", (e) => {
+    renderizarCarro();
+    var buttonCloseList = document.querySelectorAll(".delete-element");
+    buttonCloseList.forEach((span) => {
+      span.addEventListener("click", (evento) => {
+        let elementoABorrar =
+          span.closest(".row").children[1].children[0].firstElementChild
+            .innerHTML;
+        evento.target.parentElement.parentElement.parentElement.remove();
+        localStorage.removeItem(elementoABorrar);
+        keys = Object.keys(localStorage);
+        badgeSpan.innerHTML = keys.length;
+      });
+    });
+  });
+}
+
+checkoutButtons();
+
+let badgeSpan = document.querySelector(".badge");
 let cartButton = document.querySelector(".shopping-cart");
-let keys = Object.keys(localStorage)
-badgeSpan.innerHTML = keys.length
+let keys = Object.keys(localStorage);
+badgeSpan.innerHTML = keys.length;
+let abrirPopup = document.getElementById("popup");
+let popUp = document.getElementById("btnAbrirPopup");
+let cerrar = document.getElementById("btnCerrarPopup");
 
+abrirAlertaPopup(popUp, abrirPopup, cerrar);
 // Fetch
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
 
@@ -118,7 +151,7 @@ let init = {
   method: "GET",
 };
 
-  fetch(endpoint, init)
-  .then(res => res.json())
-  .then(data => script(data))
-  .catch(err=>console.log(err.message))
+fetch(endpoint, init)
+  .then((res) => res.json())
+  .then((data) => script(data))
+  .catch((err) => console.log(err.message));
