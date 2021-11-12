@@ -13,31 +13,24 @@ function renderizarCartas(element) {
     document.title == "Pet-Shop Franco | Juguetes"
   ) {
     let articulosBox = document.querySelector(".articulos_box");
-    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3.2 col-xxl-2">
-                  <img src="${
-                    element.imagen
-                  }" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${
-      element.nombre
-    }">
-                  <div class="card-body d-flex flex-column justify-content-between get-title">
-                      <div class="d-flex flex-column justify-content-evenly">
-                      <h5 class="card-title">${element.nombre}</h5>
-                      <p><a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">Descripcion</a></p><div class="collapse" id="collapseExample">
-                      <div >${element.descripcion}</div>
-                    </div>               
-                      </div>
-                      <div class="d-flex flex-column justify-content-end">
-                      <p class="card-text luchp">Precio: $${element.precio}</p>
-                      <p class="text-danger text-center"> ${
-                        element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""
-                      } </p>
-                      <label for="${
-                        element._id
-                      }"> Cantidad <input type = "number" id = "${
-      element._id
-    }" value="1" class="text-center contador"></label>                      
-                      <a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a>
-                      </div>
+    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xxl-3">
+                  <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
+                  <div class="card-body d-flex flex-column justify-content-between align-items-start get-title">
+                      <div  class="d-flex flex-column justify-content-evenly">
+                         <h5 id="div" class="card-title">${element.nombre}</h5>
+                         <p><a class="btn" style="color:rgba(123, 68, 61)" data-bs-toggle="collapse" href="#collapseExample"  aria-expanded="false" aria-controls="collapseExample">Descripción</a></p><div class="collapse" id="collapseExample">
+                        <div>${element.descripcion}</div>
+                     </div>
+                      
+                  </div>
+                  <div class="d-flex flex-column justify-content-end">
+                      <p class="card-text">Precio: $${element.precio}</p>
+                      <p class="text-danger text-center"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
+                      <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
+                      
+                      
+                  </div>
+                  <div class="d-flex justify-content-center w-100"><a href="#/" id="btnadd" class="addToCart">Añadir al carrito</a></div>
                   </div>
                   </div>`;
   }
