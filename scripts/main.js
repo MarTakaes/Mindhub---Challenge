@@ -13,7 +13,7 @@ function renderizarCartas(element) {
     document.title == "Pet-Shop Franco | Juguetes"
   ) {
     let articulosBox = document.querySelector(".articulos_box");
-    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
+    articulosBox.innerHTML += `<div class="card m-2 shadow p-3 mb-5 bg-body rounded col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 abuelo">
                   <img src="${element.imagen}" class="card-img-top img-thumbnail" style="max-height:15rem; object-fit: scale-down;" alt="${element.nombre}">
                   <div class="card-body d-flex flex-column justify-content-between get-title">
                     <div class="d-flex flex-column justify-content-evenly">
@@ -30,9 +30,12 @@ function renderizarCartas(element) {
                       <label for="${element._id}"> Cantidad <input type = "number" id = "${element._id}" value="1" class="text-center contador"></label>
                       <p class="text-danger text-center mt-4"> ${element.stock <= 5 ? "ÚLTIMAS UNIDADES!!!" : ""} </p>
                     </div>
-                    <div><a href="#/" id="btnadd" class="addToCart " >Añadir al carrito</a></div>
-                  </div>
-                </div>`;
+                    <div>
+                    <a href="#f${element._id}" id="btnadd" class="addToCart " data-bs-toggle="collapse" aria-expanded="false" aria-controls="f${element._id}">Añadir al carrito</a>
+                    </div>
+                    </div>
+                   
+                    </div>`;
   }
 }
 
@@ -68,15 +71,30 @@ function renderizarCarro() {
 
 
 function checkoutButtons() {
-  let irCheckout = document.querySelector(".ir-checkout");
-  irCheckout.addEventListener('click', e => {
-    e.target.style.visibility = "visible"
-    console.log('clikea')
-  })
+    let compraPopup = document.querySelector('.compra-popup')
+    let irCheckout = document.querySelector(".ir-checkout");
+    let carritoBox = document.querySelector(".carrito-box");
+      irCheckout.addEventListener('click',e=>{
+            keys = Object.keys(localStorage);
+          if(keys.length==0){
+            compraPopup.style.visibility='visible'
+            compraPopup.innerHTML = `No tienes elementos en el carro`
+           
+          }else{
+            compraPopup.style.visibility='visible'
+            localStorage.clear();  
+            carritoBox.innerHTML = ``
+            badgeSpan.innerHTML = 0
+          }
+          
+      })
+      compraPopup.addEventListener('click',e=>{
+          compraPopup.style.visibility='hidden'
+      })
+
   let vaciarCarrito = document.querySelector(".vaciar-carrito");
   vaciarCarrito.addEventListener("click", (e) => {
-    localStorage.clear();
-    let carritoBox = document.querySelector(".carrito-box");
+    localStorage.clear();  
     carritoBox.innerHTML = ``
     badgeSpan.innerHTML = 0
   });
@@ -102,7 +120,19 @@ function script(data) {
     addToCartButton.addEventListener("click", (a) => {
       let elementName =
         addToCartButton.closest(".get-title").children[0].firstElementChild
-        .innerHTML;
+          .innerHTML;
+        
+          alert("Agregado al carrito")
+    
+        
+        
+        
+    
+        
+        
+
+
+
 
       let selectedElement = articulos.filter(
         (articulo) => articulo.nombre == elementName
@@ -129,15 +159,21 @@ function script(data) {
   });
 }
 
-checkoutButtons();
-let badgeSpan = document.querySelector(".badge");
-let cartButton = document.querySelector(".shopping-cart");
-let keys = Object.keys(localStorage);
-badgeSpan.innerHTML = keys.length;
-let abrirPopup = document.getElementById("popup");
-let popUp = document.getElementById("btnAbrirPopup");
-let cerrar = document.getElementById("btnCerrarPopup");
-abrirAlertaPopup(popUp, abrirPopup, cerrar);
+
+    
+    let badgeSpan = document.querySelector(".badge");
+    let cartButton = document.querySelector(".shopping-cart");
+    let keys = Object.keys(localStorage);
+    badgeSpan.innerHTML = keys.length;
+    let abrirPopup = document.getElementById("popup");
+    let popUp = document.getElementById("btnAbrirPopup");
+    let cerrar = document.getElementById("btnCerrarPopup");
+    abrirAlertaPopup(popUp, abrirPopup, cerrar);
+    checkoutButtons();
+
+
+
+
 
 let endpoint = `https://apipetshop.herokuapp.com/api/articulos`;
 let init = {
