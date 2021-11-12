@@ -68,15 +68,30 @@ function renderizarCarro() {
 
 
 function checkoutButtons() {
-  let irCheckout = document.querySelector(".ir-checkout");
-  irCheckout.addEventListener('click',e=>{
-      e.target.style.visibility = "visible"
-      console.log('clikea')
-  })
+    let compraPopup = document.querySelector('.compra-popup')
+    let irCheckout = document.querySelector(".ir-checkout");
+    let carritoBox = document.querySelector(".carrito-box");
+      irCheckout.addEventListener('click',e=>{
+            keys = Object.keys(localStorage);
+          if(keys.length==0){
+            compraPopup.style.visibility='visible'
+            compraPopup.innerHTML = `No tienes elementos en el carro`
+           
+          }else{
+            compraPopup.style.visibility='visible'
+            localStorage.clear();  
+            carritoBox.innerHTML = ``
+            badgeSpan.innerHTML = 0
+          }
+          
+      })
+      compraPopup.addEventListener('click',e=>{
+          compraPopup.style.visibility='hidden'
+      })
+
   let vaciarCarrito = document.querySelector(".vaciar-carrito");
   vaciarCarrito.addEventListener("click", (e) => {
-    localStorage.clear();
-    let carritoBox = document.querySelector(".carrito-box"); 
+    localStorage.clear();  
     carritoBox.innerHTML = ``
     badgeSpan.innerHTML = 0
   });
@@ -104,6 +119,7 @@ function script(data) {
       let elementName =
         addToCartButton.closest(".get-title").children[0].firstElementChild
           .innerHTML;
+          alert('Item agregado al carrito')
 
       let selectedElement = articulos.filter(
         (articulo) => articulo.nombre == elementName
@@ -131,7 +147,7 @@ function script(data) {
 }
 
 
-    checkoutButtons();
+    
     let badgeSpan = document.querySelector(".badge");
     let cartButton = document.querySelector(".shopping-cart");
     let keys = Object.keys(localStorage);
@@ -140,6 +156,7 @@ function script(data) {
     let popUp = document.getElementById("btnAbrirPopup");
     let cerrar = document.getElementById("btnCerrarPopup");
     abrirAlertaPopup(popUp, abrirPopup, cerrar);
+    checkoutButtons();
 
 
 
