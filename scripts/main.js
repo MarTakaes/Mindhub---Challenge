@@ -28,7 +28,7 @@ function renderizarCartas(element) {
                   <div class="card-body d-flex flex-column justify-content-between get-title">
                       <div class="d-flex flex-column justify-content-evenly">
                       <h5 class="card-title">${element.nombre}</h5>
-                      <p class="card-text">${element.descripcion}</p>
+                      
                       </div>
                       <div class="d-flex flex-column justify-content-end">
                       <p class="card-text luchp">Precio: $${element.precio}</p>

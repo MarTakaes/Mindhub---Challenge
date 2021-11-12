@@ -94,8 +94,6 @@ a {
   color: white;
 }
 
-<<<<<<< HEAD
-=======
 .icon-shop {
   width: 2.2rem;
   height: 2.2rem;
@@ -103,7 +101,6 @@ a {
   margin-top: 1.2rem;
 }
 
->>>>>>> a4d9dd16339b1cc33a1720deb34d256929fe0efb
 /* cambia color de hamburguesa de negro a blanco */
 .hamburguesa {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(79deg) brightness(101%)
@@ -218,21 +215,29 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
   }
   90% {
     transform: translate(1px, 2px) rotate(0deg);
-  }
+ }
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-@media (max-width: 1200px) {
-  .mapa {
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.iframe{
+  width: 400px;
+  height: 400px;
+  
+}
+@media (max-width:320px){
+  .mapa{
+    position: absolute;
+    width: 150px;
+    height: 150px;
   }
-
-
+}
+@media (max-width: 768px){
+  .mapa{
+    width: 400px;
+    height: 400px;
+    flex-direction: column;
+  }
 }
 #cant {
   color: var(--footerColor);
@@ -273,4 +278,8 @@ box-shadow: inset 5px 5px 10px #b1b1b1,
 
 .activo {
   text-decoration: underline;
+}
+
+#abrirDescripcion{
+  visibility: hidden;
 }
