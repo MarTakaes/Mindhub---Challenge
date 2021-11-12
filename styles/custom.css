@@ -82,7 +82,7 @@ nav {
 }
 
 /*Boton Agregar al carrito*/
-#btnadd {
+#btnadd{
   background-color: #7b443d88;
   text-decoration: none;
   color: white;
@@ -91,16 +91,35 @@ nav {
   padding: 0.5rem;
   display: flex;
   justify-content: center;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+
+}
+#btnAbrirPopup{
+  background-color: #7b443d88;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  
+
 }
 
-.btnAbrirPopup {
+.btn{
+  padding: 0;
+}
+/* 
+#btnAbrirPopup {
   border-radius: 0.5;
   border: solid;
   border-color: var(--gratisColor);
   cursor: pointer;
   transition: 0.3s ease all;
-}
+} */
 
 /*Pagina Home*/
 .home-tiny-pic {
@@ -293,3 +312,9 @@ footer {
 .mail {
   color: white;
 }
+
+#div{
+  font-size: 1.3rem; 
+  min-height: 3rem;
+}
+
