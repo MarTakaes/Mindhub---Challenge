@@ -34,9 +34,7 @@ function renderizarCartas(element) {
                     <a href="#f${element._id}" id="btnadd" class="addToCart " data-bs-toggle="collapse" aria-expanded="false" aria-controls="f${element._id}">Añadir al carrito</a>
                     </div>
                     </div>
-                    <div class="collapse addto-popup" id="f${element._id}">
-                        <div >Agregado al carrito</div>
-                      </div>
+                   
                     </div>`;
   }
 }
@@ -123,17 +121,9 @@ function script(data) {
       let elementName =
         addToCartButton.closest(".get-title").children[0].firstElementChild
           .innerHTML;
-        //   let buttonAdd = document.getElementById(addToCartButton._id)
-        //   console.log(`f${a.target.descripcion}`)
-
+        
           alert("Agregado al carrito")
-        // setTimeout(function() {
-        //     addToCartButton.closest(".abuelo").children[2].remove()
-        //  }, 1000);
-        
-        
-
-        // let cartPopup= document.querySelectorAll('.addto-popup')
+    
         
         
         
